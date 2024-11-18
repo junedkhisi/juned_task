@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,18 @@ Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->
 Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 // Route::patch('/categories/{category}/update-status', [CategoryController::class, 'updateStatus'])->name('categories.update-status');
 

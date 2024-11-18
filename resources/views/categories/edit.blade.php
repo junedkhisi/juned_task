@@ -1,3 +1,10 @@
+
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Edit Categories') }}
+        </h2>
+    </x-slot>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,14 +24,14 @@
 <body>
 
     <div class="container">
-        <h1>Edit Category</h1>
+        {{-- <h1>Edit Category</h1> --}}
 
-        <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data">
+        <form class="dark:text-gray-200" action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
             <div class="form-group">
-                <label for="name">Category Name</label>
+                <label for="name" class="dark:text-gray-200">Category Name</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                     name="name" value="{{ $category->name }}" required>
                 @error('name')
@@ -57,3 +64,5 @@
 </body>
 
 </html>
+</x-app-layout>
+

@@ -1,4 +1,9 @@
-
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Create Categories') }}
+        </h2>
+    </x-slot>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,9 +23,8 @@
 <body>
 
     <div class="container">
-        <h1>Create Category</h1>
 
-        <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="dark:text-gray-200" action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Category Name</label>
@@ -51,3 +55,5 @@
 </body>
 
 </html>
+</x-app-layout>
+

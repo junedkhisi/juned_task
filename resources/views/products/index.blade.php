@@ -2,14 +2,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Categories') }}
+            {{ __('Product') }}
         </h2>
     </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-
-{{-- <!DOCTYPE html>
-<html lang="en"> --}}
-{{--
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,9 +19,9 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Category Page</title>
-</head> --}}
+</head>
 
-{{-- <body> --}}
+<body>
 
     @if (session('success'))
         <script>
@@ -38,18 +36,19 @@
     @endif
     <div class="container my-4">
         <div class="d-flex justify-content-between mb-3">
-            <a href="{{ route('categories.create') }}" class="btn btn-primary">Create Category</a>
-
+            <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
         </div>
         <div class="table-responsive">
             <div class="card">
                 <div class="card-footer">
-                    <table id="categories-table" class="table table-striped">
+                    <table id="products-table" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>Category Name</th>
                                 <th>Name</th>
-                                <th>Status</th>
+                                <th>Description</th>
+                                <th>Price</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -58,7 +57,7 @@
             </div>
         </div>
     </div>
-{{-- </body> --}}
+</body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -66,21 +65,29 @@
 
 <script>
     $(document).ready(function() {
-        $('#categories-table').DataTable({
+        $('#products-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ route('categories.index') }}',
+            ajax: '{{ route('products.index') }}',
             columns: [{
                     data: 'id',
                     name: 'id'
+                },
+                {
+                    data: 'category_name',
+                    name: 'category_name'
                 },
                 {
                     data: 'name',
                     name: 'name'
                 },
                 {
-                    data: 'status',
-                    name: 'status'
+                    data: 'description',
+                    name: 'description'
+                },
+                {
+                    data: 'price',
+                    name: 'price'
                 },
                 {
                     data: 'actions',
@@ -110,39 +117,9 @@
                 }
             });
         });
-
-        // // Toggle category status
-        // $(document).on('click', '.toggle-status', function() {
-        //     var categoryId = $(this).data('id');
-        //     var newStatus = $(this).data('status');
-        //     var button = $(this);
-
-        //     $.ajax({
-        //         url: '/categories/' + categoryId + '/update-status',
-        //         type: 'PATCH',
-        //         data: {
-        //             _token: '{{ csrf_token() }}',
-        //             status: newStatus
-        //         },
-        //         success: function(response) {
-        //             if (newStatus === 'active') {
-        //                 button.removeClass('btn-secondary').addClass('btn-success').text(
-        //                     'Active');
-        //                 button.data('status', 'inactive');
-        //             } else {
-        //                 button.removeClass('btn-success').addClass('btn-secondary').text(
-        //                     'Inactive');
-        //                 button.data('status', 'active');
-        //             }
-        //         },
-        //         error: function() {
-        //             alert('Error updating status');
-        //         }
-        //     });
-        // });
     });
 </script>
 
-{{-- </html> --}}
+</html>
 </x-app-layout>
 
